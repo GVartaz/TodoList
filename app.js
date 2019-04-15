@@ -25,7 +25,7 @@ app.use(session({
 
 dataLayer.init(function(){
     console.log("Connectiong to db");
-    app.listen(port);
+    //app.listen(port);
     console.log("App listening on port "+port);
 });
 
