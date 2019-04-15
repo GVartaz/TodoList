@@ -1,0 +1,17 @@
+{
+  "name": "afaire",
+  "version": "1.0.0",
+  "description": "tp3 web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Geoffrey Vartazian",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.17",
+    "morgan": "^1.9.1"
+  }
+}
