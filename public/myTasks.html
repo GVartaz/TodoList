@@ -31,12 +31,14 @@
                     <div id="task" ng-repeat="x in taskSet">
                         <h5 ng-if="x.liste == liste.name">
                             <div id ="cb">
-                                <input type="checkbox" id="done{{x._id}}" ng-change="switch(x._id)" ng-checked="x.done" ng-model="formData.check"> 
+                                <!--<input type="checkbox" id="done{{x._id}}" ng-change="switch(x._id)" ng-checked="x.done" ng-model="formData.check">-->
                                 <div id="content" ng-if="x.done"> 
+                                    <img src="img/checked.png" alt="Task done" ng-click="switch(x._id)">
                                     <del>{{ x.text }}</del>
                                     <i>({{x.date}})</i>
                                 </div>
                                 <div id="content" ng-if="!x.done">
+                                    <img src="img/unchecked.png" alt="Task not done" ng-click="switch(x._id)">
                                     {{ x.text }}
                                     <i>({{x.date}})</i>
                                 </div>

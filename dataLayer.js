@@ -84,6 +84,16 @@ var dataLayer = {
         });
     },
 
+    getTask : function(id,cb){
+        ObjectID = require('mongodb').ObjectID;
+        var ident = {
+            _id : new ObjectID(id)
+        };
+        db.collection("Tasks").findOne(ident,function(err,docs) {
+            cb(docs);
+        });
+    },
+
     insertTask : function(task,cb){
         db.collection("Tasks").insertOne(task,function(err,result){
             cb();

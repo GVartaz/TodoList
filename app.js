@@ -172,17 +172,19 @@ app.put("/updateTask/:id", function(req, res) {
 
 app.put("/updateCB/:id", function(req, res) {
     var id = req.params.id;
-    var task = { 
-        done : req.body.check
-    };
-    dataLayer.updateTask(id, task,function(){
-        var user = req.session.logUser;
-        var liste;
-        dataLayer.getListSet(user,function(data){
-            liste = data;
-            dataLayer.getTaskSet2(liste,user,function(data){
-                res.send({taskSet: data,listeSet: liste,user: user});
-            })
+    var task;
+    dataLayer.getTask(id,function(data){
+        task = data;
+        task.done = !task.done;
+        dataLayer.updateTask(id, task,function(){
+            var user = req.session.logUser;
+            var liste;
+            dataLayer.getListSet(user,function(data){
+                liste = data;
+                dataLayer.getTaskSet2(liste,user,function(data){
+                    res.send({taskSet: data,listeSet: liste,user: user});
+                })
+            });
         });
-    });
+    })
 });
