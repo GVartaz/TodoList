@@ -116,7 +116,23 @@ demoApp.controller('MainController',function ($scope, $http){
         }
     )};
 
+    $scope.openEdit = function (id){
+        var text = document.getElementById("text"+id);
+        var btnValid = document.getElementById("btn"+id);
+        var btnEdit = document.getElementById("modif"+id);
+        btnEdit.style.display = "none";
+        text.value = "";
+        text.style.display = "inline";
+        btnValid.style.display = "inline";
+    };
+
     $scope.update = function (id){
+        var text = document.getElementById("text"+id);
+        var btnValid = document.getElementById("btn"+id);
+        var btnEdit = document.getElementById("modif"+id);
+        btnEdit.style.display = "inline";
+        text.style.display = "none";
+        btnValid.style.display = "none";
         $http.put('/updateTask/'+id,$scope.formData).then(function(resp){
             $scope.taskSet = resp.data.taskSet;
             $scope.listSet = resp.data.listeSet;
