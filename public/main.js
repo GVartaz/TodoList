@@ -78,13 +78,18 @@ demoApp.controller('MainController',function ($scope, $http){
     });
 
     $scope.createList = function (){
-        $http.post('/addList',$scope.formListe).then(function(resp){
-            $scope.formListe = {};
-            $scope.taskSet = resp.data.taskSet;
-            $scope.listSet = resp.data.listeSet;
-            $scope.user = resp.data.user;
+        if(document.getElementById("newListe").value == "") {
+            document.getElementById("liste-warning").innerHTML = "Vous devez donner un nom à votre liste";
+        } else {
+            document.getElementById("liste-warning").innerHTML = "";
+            $http.post('/addList',$scope.formListe).then(function(resp){
+                $scope.formListe = {};
+                $scope.taskSet = resp.data.taskSet;
+                $scope.listSet = resp.data.listeSet;
+                $scope.user = resp.data.user;
+            });
         }
-    )};
+    };
 
     $scope.deleteList = function (id){
         $http.delete('/deleteList/'+id).then(function(resp){
@@ -95,18 +100,24 @@ demoApp.controller('MainController',function ($scope, $http){
     )};
 
     $scope.createTodo = function (){
-        $http.post('/addTask',$scope.formData).then(function(resp){
+        if(document.getElementById("newTache").value == "") {
+            document.getElementById("select-warning").innerHTML = "Vous devez donner un nom à votre tache";
+        } else {
+            $http.post('/addTask',$scope.formData).then(function(resp){
             if(resp.data == false){
                 document.getElementById("select-warning").innerHTML = "Vous devez associer une liste à cette tache";
             } else {
                 document.getElementById("select-warning").innerHTML = "";
-                $scope.formData = {};
-                $scope.taskSet = resp.data.taskSet;
-                $scope.listSet = resp.data.listeSet;
-                $scope.user = resp.data.user;
-            }
+                
+                    $scope.formData = {};
+                    $scope.taskSet = resp.data.taskSet;
+                    $scope.listSet = resp.data.listeSet;
+                    $scope.user = resp.data.user;
+            
+                }
+            })
         }
-    )};
+    };
 
     $scope.deleteTodo = function (id){
         $http.delete('/deleteTask/'+id).then(function(resp){

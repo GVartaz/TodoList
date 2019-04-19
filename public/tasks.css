@@ -90,6 +90,10 @@ center h1 img{
     color: red;
 }
 
+#liste-warning{
+    color: red;
+}
+
 p#footer
 {
     position: fixed;

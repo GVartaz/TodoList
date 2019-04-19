@@ -18,8 +18,9 @@
             <div id="list-form">
                 <form>
                     <h5>Nouvelle liste : </h5>
-                    <input type="text" required="" placeholder="Nom de la liste" ng-model="formListe.name">
+                    <input type="text" required="" id="newListe" placeholder="Nom de la liste" ng-model="formListe.name">
                     <button type="submit" class="btn btn-success" ng-click="createList()">Créer</button>
+                    <p id="liste-warning"></p>
                 </form>
             </div>
             <div id="liste" ng-repeat="liste in listSet | orderBy:'+name'">
@@ -56,7 +57,7 @@
             <div id="todo-form">
                 <form>
                     <p>
-                        Tâche : <input type="text" required placeholder="Ma tache" ng-model="formData.text">
+                        Tâche : <input type="text" id="newTache" required placeholder="Ma tache" ng-model="formData.text">
                     </p>
                     <p>
                         Associer à la liste : 
